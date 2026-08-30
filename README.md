@@ -21,3 +21,20 @@ Multiple tools were used during the duration of the project. As there was no pub
 I discovered a template Python script online written by Clarke (2024) which I used for the data scraping on Rightmove as is it performed the exact function that was required and was already tailored for the Rightmove website I was using. This data scrape leads on to the other tools I used of Excel and SQL Server Management Studio.   Excel was used to view the extracted dataset due to its familiarity and user friendly nature – including it’s simple features -  of reviewing data. 
 Due to the nature of pipelining and data storage that SSMS provides with its ability to create and execute stored procedures and also manage security it made sense to use SSMS for the storage and transformations of the initial raw extracted dataset. More information on this will be provided in the next section – Data Engineering.
 While Python was used for the initial extract, the functionality from imported packages like Pandas, Matplotlib, ‘scikit_posthocs’, and ‘scipy.stats’ allowed it to be used for both Data Visualisation and Analysis portions of this project as well. Pandas is widely used for data manipulation and Matplotlib is also widely used for the Data Visualisation through it’s ability to generate graphs and charts which is why it made sense to use for this project. The sci packages used also allowed for the statistical analysis that was required for this project.
+
+---
+
+### Data Engineering
+
+---
+
+### Data Analysis and Visualisations
+
+Initial exploratory data analysis was performed on the exported dataset – to gain an initial high-level view of the transformed data itself. The initial exploratory analysis was done on Python using both the pandas package and matplotlib package to get both summary statistics of the dataset along with graphical visualisations of the distribution of data by different postcode areas respectively.
+
+***Insert python code and results of code here***
+
+As can be seen above, it appears that both the mean and median of the normalised prices by postcode area differs to some extent between different postcode areas. While the summary statistics can’t be considered as definitive evidence on its own - it is however, a good initial indicator that prices may differ by postcode area. It should also be noted that a count was done on each postcode area to see how many data points we had for prices. It was then decided that any postcode areas that had less than 30 records of data was to be removed from the analysis. This was done to remove any anomalies and noise present in the data since the limited amount of records available for that postcode area might distort the analysis or give us an incorrect value for the summary statistics. While it was decided that 30 would be the threshold for whether or not a postcode area would be included in the analysis it should be noted that this was a completely arbitrary decision as 30 seemed instinctually a reasonable threshold value to use.
+After reading a guide on Hypothesis Testing on the University of Sheffield’s website, it was noted that many different hypothesis tests exist. As more than 3 different groups existed in this dataset, this meant that using either an ANOVA or Kruskal Wallis hypothesis test would be the most appropriate for the analysis. To help decide which one was to be used I needed to view how the data was distributed by different postcodes. Figures 6A – 6M below – generated from the matplotlib package - shows the distributions price in different postcode areas.
+
+
