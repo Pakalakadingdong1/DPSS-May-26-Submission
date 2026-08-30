@@ -1,4 +1,5 @@
-# DSPP_May26
+# **DSPP_May26_Summative**
 
-# H1
-## H2
+# ***Data Science Project - Edinburgh House Prices***
+
+## Executive Summary 
