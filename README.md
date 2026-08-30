@@ -30,6 +30,50 @@ The data sourced online from Rightmove  was imported and stored on a database cr
 
 ![ssms_schemas](assets/SSMS_schemas.png)
 
+The stored procedures were written in a way so as to future proof the entire pipeline and to allow possible automation in the future in case I wanted to build up the dataset and perform analysis in future iterations. The idea was that - in the future - this automation would be done through the use of SSIS packages to run the scripts and stored procedures automatically. 
+
+In the first stage of the pipeline after the data has been scraped, saved and stored as a csv in a folder it gets imported into the table in the import schema in SSMS through  our ‘importdata‘ stored procedure as shown in the SQL script below:
+
+```SQL
+USE [DSPP_L4_Assessment]
+GO
+/****** Object:  StoredProcedure [Import].[importdata]    Script Date: 30/08/2026 18:12:45 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<**>
+-- Create date: <20260817>
+-- Description:	<Stored procedure to import new data that will be later appended to the export table after running each quarter>
+-- =============================================
+ALTER PROCEDURE [Import].[importdata] 
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+-- Remove existing data
+TRUNCATE TABLE import.import_house_prices;
+
+    -- Import the new CSV
+BULK INSERT import.import_house_prices
+FROM 'C:\Users\**\Documents\**\Courses\Data Science Professional Practice\Assessment\Summative Assessment\edinburgh_house_prices_with_postcodes.csv'
+WITH
+(
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    KEEPNULLS
+);
+
+    PRINT 'Edinburgh property data successfully refreshed.';
+
+END
+```
+
+
 ---
 
 ### Data Analysis and Visualisations
