@@ -81,6 +81,8 @@ print(posthoc)
 
 As there was 132 comparisons a Bonferroni adjustment was applied to the Dunn test and in the array of results above the p-values in red show the postcode area pairs that show a statistically significant difference in house price distributions. This along with the summary statistics indicate the possibility that property prices differ significantly between some Edinburgh postcode areas.
 
+---
+
 ### *Reference List*
 Allam, I. (2025) ANALYSIS OF VARIANCE (ANOVA): A COMPREHENSIVE STUDY OF CONCEPT, APPLICATION, AND IMPORTANCE IN EXPERIMENTAL DATA ANALYSIS. Doi: 10.13140/RG.2.2.15506.72640  
 
