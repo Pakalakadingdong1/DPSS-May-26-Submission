@@ -61,3 +61,20 @@ print("P-value:", p_value)
 ```
 
 ![kruskal_wallis_test](assets/kruskal_wallis_test.png)
+
+As the P-value is lower than the significance level the null hypothesis is rejected and it can be said that the results are statistically significant enough to say that at least one postcode area group has a different median to the others. 
+Because the null hypothesis was rejected a post-hoc Dunn test was also done to see which postcode areas showed a statistically significant difference in house price distributions. The script below show the Python code used for the test and the results of the test respectively.
+
+```python
+posthoc = sp.posthoc_dunn(
+    df_test,
+    val_col="normalised_price",
+    group_col="postcode_area",
+    p_adjust="bonferroni"
+)
+
+print("\nDunn's Test:")
+print(posthoc)
+```
+
+![dunn_test_stats](assets/dunn_test_stats.png)**
