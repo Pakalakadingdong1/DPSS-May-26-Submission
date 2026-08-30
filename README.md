@@ -44,3 +44,18 @@ As can be seen above, it appears that both the mean and median of the normalised
 After reading a guide on Hypothesis Testing on the University of Sheffield’s website, it was noted that many different hypothesis tests exist. As more than 3 different groups existed in this dataset, this meant that using either an ANOVA or Kruskal Wallis hypothesis test would be the most appropriate for the analysis. To help decide which one was to be used I needed to view how the data was distributed by different postcodes. The figures below – generated from the matplotlib package - shows the distributions price in different postcode areas.
 
 ![histogram](assets/postcode_histograms.png)
+
+After looking at the visualisations of distributions for property prices in different postcodes it was seen generally that the data wasn’t normally distributed with most of the histograms skewed to the right. This meant that a non-parametric test would be more suitable to use as the hypothesis test (Allam, 2025). As the Kruskal Wallis test is a non-parametric test (Ostertagova, 2014) that doesn’t rely on normal distributions of data and is based on ranking rather than mean values of groups; the Kruskal Wallis test was used for the dataset.
+With the hypothesis test settled on, the following null and alternative hypotheses were used:
+H0 = There is no significant difference in the different postcode group medians
+H1 = At least one postcode area group has a different median to the others.
+Most commonly a significance level of 0.05 (Su, 2025) is used as the threshold to determine whether H0 is rejected or not. This will also be the case for this test and using the scipy.stats package the Kruskal Wallis test determined the following test statistics and p-value shown in script below:
+
+```python
+statistic, p_value = kruskal(*groups)
+
+print("Kruskal-Wallis Test")
+print("-------------------")
+print("Statistic:", statistic)
+print("P-value:", p_value)
+```
