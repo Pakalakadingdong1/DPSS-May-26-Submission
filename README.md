@@ -83,23 +83,41 @@ As there was 132 comparisons a Bonferroni adjustment was applied to the Dunn tes
 
 ### *Reference List*
 Allam, I. (2025) ANALYSIS OF VARIANCE (ANOVA): A COMPREHENSIVE STUDY OF CONCEPT, APPLICATION, AND IMPORTANCE IN EXPERIMENTAL DATA ANALYSIS. Doi: 10.13140/RG.2.2.15506.72640  
+
 Chugani, V. (2024) Hypothesis Testing Made Easy. Available at: https://www.datacamp.com/tutorial/hypothesis-testing (Accessed: 13 August 2026)
+
 Clarke, S (2024) Scraping Rightmove Sales Data Using Python and cURL. Available at: https://medium.com/@sebastian.clarke224/scraping-rightmove-sales-data-using-python-and-curl-7e491e556f5a (Accessed: 12 August 2026)
+
 Dinno, A (2015) ‘Nonparametric Pairwise Multiple Comparisons in Independent Groups Using Dunn’s Test’, The Stata Journal, 15(1), pp. 292-300. Doi: https://doi.org/10.1177/1536867X1501500117
+
 Dunn, O. J. (1964). ‘Multiple Comparisons Using Rank Sums’, Technometrics, 6(3), pp. 241-252. Doi: https://doi.org/10.2307/1266041 
+
 GeeksForGeeks (2026) Hypothesis Testing. Available at: https://www.geeksforgeeks.org/data-science/understanding-hypothesis-testing/ (Accessed: 13 August 2026)
+
 Kenton, W. (2025) What Is Analysis of Variance (ANOVA)?. Available at: https://www.investopedia.com/terms/a/anova.asp (Accessed: 13 August 2026)
+
 Kruskal, W. H., Wallis, W. A. (1952) ‘Use of Ranks in One-Criterion Variance Analysis’, Journal of the American Statistical Association, 47(260), pp. 583-621. Doi: https://doi.org/10.1080/01621459.1952.10483441 
+
 Newcastle University (2026) Analysis of Variance (ANOVA). Available at: https://services.ncl.ac.uk/itservice/research/dataanalysis/advancedmodelling/analysisofvarianceanova/ (Accessed: 14 August 2026)
+
 Ostertagova, E., Ostertag, O, and Kováč, J (2014). ‘Methodology and Application of the Kruskal-Wallis Test’, Applied Mechanics and Materials, 611, pp. 115-120. Doi: 10.4028/www.scientific.net/AMM.611.115
+
 Rajesh, R (2023) A Post-hoc Test for Kruskal-Wallis. Available at: https://www.theanalysisfactor.com/dunns-test-post-hoc-test-after-kruskal-wallis/ (Accessed: 14 August 2026)
+
 Rightmove (2026) House Prices in Edinburgh. Available at: https://www.rightmove.co.uk/house-prices/edinburgh.html (Accessed: 12 August 2026)
 
 Statistics How To (2026). Available at: https://www.statisticshowto.com/dunns-test/ (Accessed: 14 August 2026).
+
 Statistics Kingdom (2026) Kruskal Wallis Test Calculator. Available at: https://www.statskingdom.com/kruskal-wallis-calculator.html (Accessed: 14 August 2026)
+
 Su, J (2025) ‘Application and Role of Hypothesis Testing in Practice, Theoretical and Natural Science, 106(1), pp. 10-14. Doi: https://doi.org/10.54254/2753-8818/2025.22575 
+
 The SciPy community (2008) scipy.stats.kruskal. Available at: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kruskal.html?utm_source=chatgpt.com (Accessed: 14 August 2026)
+
 Thevapalan, A. (2024) A Comprehensive Guide to Using ANOVA in Excel. Available at: https://www.datacamp.com/tutorial/excel-anova-guide (Accessed: 14 August 2026)
+
 University of Sheffield (2026) Choosing a Hypothesis test. Available at: https://sheffield.ac.uk/mash/stats-resources/choosing (Accessed: 13 August 2026)
+
 University of Sheffield (2026) Introduction to Hypothesis tests. Available at: https://sheffield.ac.uk/mash/stats-resources/hypothesis (Accessed: 13 August 2026)
+
 W3Schools (2026) SQL Stored Procedures. Available at: https://www.w3schools.com/sql/sql_stored_procedures.asp (Accessed: 13 August 2026)
