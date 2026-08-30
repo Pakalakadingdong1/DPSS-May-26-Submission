@@ -32,7 +32,7 @@ The data sourced online from Rightmove  was imported and stored on a database cr
 
 The stored procedures were written in a way so as to future proof the entire pipeline and to allow possible automation in the future in case I wanted to build up the dataset and perform analysis in future iterations. The idea was that - in the future - this automation would be done through the use of SSIS packages to run the scripts and stored procedures automatically. 
 
-In the first stage of the pipeline after the data has been scraped, saved and stored as a csv in a folder it gets imported into the table in the import schema in SSMS through  our ‘importdata‘ stored procedure as shown in the SQL script below:
+In the first stage of the pipeline after the data has been scraped, saved and stored as a csv in a folder it gets imported into the table in the import schema in SSMS through  our ‘importdata‘ stored procedure as shown in the SQL script below. This csv file is saved in the datasets folder of the Github repository and is called 'edinburgh_house_prices_with_postcodes.csv'.
 
 ```SQL
 USE [DSPP_L4_Assessment]
@@ -266,7 +266,7 @@ END
 ```
 
 The stored procedure in the export schema was written so that the new transformed data saved in the ‘staging’ schema would be appended to the ‘final_table_to_export’ table as shown in the above script with a partition and ranking applied to future-proof the process to only show the most recent properties sales data in case the export dataset had multiple sales information of the same property due to a previous historic sale.
-This table saved in the export schema is what was used for the final analysis of the data done in Python.
+This table saved in the export schema is what was used for the final analysis of the data done in Python and is saved in the datasets folder of the Github repository named 'export_table_dataset.csv'.
 
 
 ---
