@@ -38,6 +38,8 @@ summary = df.groupby("postcode_area")["normalised_price"].agg(["count", "mean", 
 print(summary)
 ```
 
+![histogram](assets/summary_stats.png)
+
 As can be seen above, it appears that both the mean and median of the normalised prices by postcode area differs to some extent between different postcode areas. While the summary statistics can’t be considered as definitive evidence on its own - it is however, a good initial indicator that prices may differ by postcode area. It should also be noted that a count was done on each postcode area to see how many data points we had for prices. It was then decided that any postcode areas that had less than 30 records of data was to be removed from the analysis. This was done to remove any anomalies and noise present in the data since the limited amount of records available for that postcode area might distort the analysis or give us an incorrect value for the summary statistics. While it was decided that 30 would be the threshold for whether or not a postcode area would be included in the analysis it should be noted that this was a completely arbitrary decision as 30 seemed instinctually a reasonable threshold value to use.
 After reading a guide on Hypothesis Testing on the University of Sheffield’s website, it was noted that many different hypothesis tests exist. As more than 3 different groups existed in this dataset, this meant that using either an ANOVA or Kruskal Wallis hypothesis test would be the most appropriate for the analysis. To help decide which one was to be used I needed to view how the data was distributed by different postcodes. The figures below – generated from the matplotlib package - shows the distributions price in different postcode areas.
 
