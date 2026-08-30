@@ -1,11 +1,18 @@
 # **DSPP_May26_Summative**
+
 ---
+
 ## ***Data Science Project - Edinburgh House Prices***
+
 ---
+
 ### Executive Summary 
+
 This project aims to explore whether different postal codes in Edinburgh has any effect on property prices in the city. Through data scraping of online resources, a dataset of residential property prices was obtained for the project.
 Initial analysis - through summary statistics of the dataset used suggested - that prices did differ by area however, summary statistics on it’s own was not enough evidence for this. However, later on, through the use of a Kruskal Wallis non-parametric hypothesis test combined a post hoc Dunn test suggests that house prices do differ significantly in some postcode areas in the City of Edinburgh.
+
 ---
+
 ### Data Infrastructure & Tools 
 
 Multiple tools were used during the duration of the project. As there was no public dataset already available that I could access for free to get information on property prices this meant I needed to utilise python to data scrape the information I needed for the project from the property website Rightmove of residential property prices in Edinburgh. 
