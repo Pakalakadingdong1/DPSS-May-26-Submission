@@ -26,6 +26,10 @@ While Python was used for the initial extract, the functionality from imported p
 
 ### Data Engineering
 
+The data sourced online from Rightmove  was imported and stored on a database created in SSMS so as to handle the pipelining and processing/transformations of the scraped data from the Rightmove website. Different schemas were created in the database used in SSMS – with a stored procedure used in each schema to separate each step of the pipeline and each step of the data transformations. These 3 separate schemas, were respectively named the ‘import’, ‘staging’, and ‘export’ schemas as shown in screenshot below.
+
+![ssms_schemas](assets/SSMS_schemas.png)
+
 ---
 
 ### Data Analysis and Visualisations
