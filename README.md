@@ -73,6 +73,201 @@ WITH
 END
 ```
 
+The data types of all fields for the table in the import schema was set to be nvarchar so that there would be no loss or conversion issues with the imported data. 
+The next stage after that was to run the stored procedure in the staging schema which was used transform some field types from nvarchar to either a numerical or data type. This was mainly done so that the script could also be used to create a new field called ‘normalised_price’. As the scraped dataset contained different types of properties – e.g. flats, bungalows, detached – with different amounts of bedrooms it made sense to normalise the price by bedroom so that we could attempt an apples to apples comparison of property prices by postcode area. Below we see the stored procedure script that does this processing/transformation. 
+
+```SQL
+USE [DSPP_L4_Assessment]
+GO
+/****** Object:  StoredProcedure [Staging].[transformed_data]    Script Date: 30/08/2026 18:15:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<**>
+-- Create date: <20260817>
+-- Description:	<Stored procedure to transform and clean imported data and append it to the export table after running each quarter>
+-- =============================================
+ALTER PROCEDURE [Staging].[transformed_data] 
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+-- Remove existing data
+TRUNCATE TABLE staging.transformed_prices_data;
+
+--Temp table for transform convert field types
+DROP TABLE IF EXISTS #temp1;
+
+SELECT
+    [property_type],
+    
+	CAST(
+		CAST([bedrooms] AS dec(4,1)) 
+	AS TINYINT) AS [bedrooms],
+	
+	[address],
+    CAST([price] AS int) AS [price],
+    CAST([date] AS date) AS [date],
+    [url],
+    [postcode],
+    [postcode_area],
+    [main_area]
+INTO #temp1
+FROM import.import_house_prices 
+WHERE bedrooms IS NOT NULL
+
+
+SELECT * FROM #temp1
+--Temp Table for new normalised price fields
+DROP TABLE IF EXISTS #temp2;
+
+SELECT
+    [property_type],
+    [bedrooms],
+	[address],
+    [price],
+	[price]/[bedrooms] As [normailised_price],
+    [date],
+    [url],
+    [postcode],
+    [postcode_area],
+    [main_area]
+INTO #temp2
+FROM #temp1
+
+
+-- Import the new CSV to staging schema
+INSERT INTO staging.transformed_prices_data
+(
+    [property_type],
+    [bedrooms],
+    [address],
+    [price],
+	[normalised_price],
+    [date],
+    [url],
+    [postcode],
+    [postcode_area],
+    [main_area]
+)
+SELECT
+    [property_type],
+    [bedrooms],
+	[address],
+    [price],
+	[normailised_price],
+    [date],
+    [url],
+    [postcode],
+    [postcode_area],
+    [main_area]
+FROM #temp2; 
+
+
+
+END
+```
+
+The final stage done for pipelining in SSMS was in the export schema shown below in the script below.
+
+```SQL
+USE [DSPP_L4_Assessment]
+GO
+/****** Object:  StoredProcedure [Export].[add_staging_data_to_export_table]    Script Date: 30/08/2026 18:16:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [Export].[add_staging_data_to_export_table] 
+
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+DROP TABLE IF EXISTS #temp1;
+
+SELECT
+    [property_type],
+    [bedrooms],
+    [address],
+    [price],
+    [normalised_price],
+    [date],
+    [url],
+    [postcode],
+    [postcode_area],
+    [main_area]
+INTO #temp1
+FROM [DSPP_L4_Assessment].[Export].[final_table_for export]
+
+UNION
+
+SELECT
+    [property_type],
+    [bedrooms],
+    [address],
+    [price],
+    [normalised_price],
+    [date],
+    [url],
+    [postcode],
+    [postcode_area],
+    [main_area]
+FROM [DSPP_L4_Assessment].[Staging].[transformed_prices_data];
+
+TRUNCATE TABLE [export].[final_table_for export]
+
+
+DROP TABLE IF EXISTS #temp2
+SELECT *
+	,ROW_NUMBER() OVER (PARTITION BY [address] ORDER BY [date] DESC) AS [rank]
+INTO #temp2
+FROM #temp1
+
+
+
+INSERT INTO [export].[final_table_for export]
+(
+    [property_type],
+    [bedrooms],
+    [address],
+    [price],
+	[normalised_price],
+    [date],
+    [url],
+    [postcode],
+    [postcode_area],
+    [main_area]
+)
+SELECT 
+    [property_type],
+    [bedrooms],
+	[address],
+    [price],
+	[normalised_price],
+    [date],
+    [url],
+    [postcode],
+    [postcode_area],
+    [main_area]
+FROM #temp2
+WHERE rank = 1
+
+END
+```
+
+The stored procedure in the export schema was written so that the new transformed data saved in the ‘staging’ schema would be appended to the ‘final_table_to_export’ table as shown in the above script with a partition and ranking applied to future-proof the process to only show the most recent properties sales data in case the export dataset had multiple sales information of the same property due to a previous historic sale.
+This table saved in the export schema is what was used for the final analysis of the data done in Python.
+
 
 ---
 
