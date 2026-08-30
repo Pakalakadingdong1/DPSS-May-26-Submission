@@ -60,4 +60,4 @@ print("Statistic:", statistic)
 print("P-value:", p_value)
 ```
 
-![kruskal_wallis_test](assets/postcode_histograms.png)
+![kruskal_wallis_test](assets/kruskal_wallis_test.png)
