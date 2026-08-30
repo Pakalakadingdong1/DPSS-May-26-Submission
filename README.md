@@ -3,7 +3,7 @@
 ---
 
 ## ***Data Science Project - Edinburgh House Prices***
-
+The following shows the Data Science Project I did for the DPSS L4 Course. The initial scraped datasets along with post-processed dataset after pipeline transformations are included in this repository
 ---
 
 ### Executive Summary 
